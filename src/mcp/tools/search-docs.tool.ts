@@ -20,27 +20,30 @@ export class SearchDocsTool {
       };
     }
 
-    const text = docs
-      .map((d) => {
-        const sections: string[] = [
-          `## ${d.title}`,
-          `**URL**: ${d.url}`,
-          `**Category**: ${d.category}`,
-        ];
-
-        if (d.codeExamples?.length > 0) {
-          sections.push('\n### Code Examples');
-          d.codeExamples.slice(0, 3).forEach((code) => {
-            sections.push(`\`\`\`\n${code}\n\`\`\``);
-          });
-        } else {
-          sections.push(`\n${d.content.slice(0, 300)}...`);
-        }
-
-        return sections.join('\n');
-      })
-      .join('\n\n---\n\n');
-
+    const text = docs.map((d) => this.formatDoc(d)).join('\n\n---\n\n');
     return { content: [{ type: 'text' as const, text }] };
+  }
+
+  private formatDoc(d: ReturnType<RagService['search']>[number]): string {
+    const sections: string[] = [
+      `## ${d.title}`,
+      `**URL**: ${d.url}`,
+      `**Category**: ${d.category}`,
+    ];
+
+    if (d.codeExamples?.length > 0) {
+      sections.push(...this.formatCodeExamples(d.codeExamples));
+    } else {
+      sections.push(`\n${d.content.slice(0, 300)}...`);
+    }
+
+    return sections.join('\n');
+  }
+
+  private formatCodeExamples(examples: string[]): string[] {
+    return [
+      '\n### Code Examples',
+      ...examples.slice(0, 3).map((code) => `\`\`\`\n${code}\n\`\`\``),
+    ];
   }
 }
