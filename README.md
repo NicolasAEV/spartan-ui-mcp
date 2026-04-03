@@ -39,8 +39,8 @@ Create `.vscode/mcp.json` in your workspace:
   "servers": {
     "spartan-ui": {
       "type": "stdio",
-      "command": "node",
-      "args": ["/YOUR-PATH/spartan-ui-mcp/dist/main.js"]
+      "command": "npx",
+      "args": ["spartan-ui-mcp"]
     }
   }
 }
@@ -56,8 +56,8 @@ Edit `%APPDATA%\Claude\claude_desktop_config.json`:
 {
   "mcpServers": {
     "spartan-ui": {
-      "command": "node",
-      "args": ["/YOUR-PATH/spartan-ui-mcp/dist/main.js"]
+      "command": "npx",
+      "args": ["spartan-ui-mcp"]
     }
   }
 }
