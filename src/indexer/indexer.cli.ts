@@ -6,20 +6,8 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import fs from 'node:fs';
 import path from 'node:path';
-
-const SPARTAN_URL = 'https://spartan.ng';
-const SITEMAP_URL = `${SPARTAN_URL}/sitemap.xml`;
-const DATA_PATH = path.join(process.cwd(), 'src', 'data', 'spartan-docs.json');
-const RATE_LIMIT_MS = 200;
-
-interface DocEntry {
-  id: string;
-  url: string;
-  title: string;
-  content: string;
-  category: string;
-  codeExamples: string[];
-}
+import { SPARTAN_URL, SITEMAP_URL, SPARTAN_DOCS_PATH, RATE_LIMIT_MS } from '../common/constants/paths.constant.js';
+import type { DocEntry } from '../common/interfaces/doc-entry.interface.js';
 
 async function fetchDocUrls(): Promise<string[]> {
   console.log('Fetching sitemap...');
@@ -79,9 +67,9 @@ async function main() {
     await new Promise((r) => setTimeout(r, RATE_LIMIT_MS));
   }
 
-  fs.mkdirSync(path.dirname(DATA_PATH), { recursive: true });
-  fs.writeFileSync(DATA_PATH, JSON.stringify(docs, null, 2));
-  console.log(`\nDone! Indexed ${docs.length} documents → ${DATA_PATH}`);
+  fs.mkdirSync(path.dirname(SPARTAN_DOCS_PATH), { recursive: true });
+  fs.writeFileSync(SPARTAN_DOCS_PATH, JSON.stringify(docs, null, 2));
+  console.log(`\nDone! Indexed ${docs.length} documents → ${SPARTAN_DOCS_PATH}`);
 }
 
 main().catch((err) => {
