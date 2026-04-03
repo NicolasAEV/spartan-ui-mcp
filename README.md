@@ -18,6 +18,7 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for [S
 | `inspect-spartan-project` | Checks if Spartan UI is initialized and returns project config. |
 | `generate-spartan-component` | Generates the CLI command to add a specific component. |
 | `reindex-spartan-docs` | Re-crawls spartan.ng and reloads the in-memory index. |
+| `spartan-help` | Lists all available tools with parameters and usage examples. |
 
 ## Installation
 
@@ -39,7 +40,13 @@ Create `.vscode/mcp.json` in your workspace:
     "spartan-ui": {
       "type": "stdio",
       "command": "node",
-      "args": ["/YOUR-PATH/spartan-ui-mcp/dist/main.js"] mode in Copilot Chat — the tools will be available automatically.
+      "args": ["/YOUR-PATH/spartan-ui-mcp/dist/main.js"]
+    }
+  }
+}
+```
+
+Enable it in Copilot Chat — the tools will be available automatically.
 
 ### Claude Desktop
 
@@ -50,7 +57,13 @@ Edit `%APPDATA%\Claude\claude_desktop_config.json`:
   "mcpServers": {
     "spartan-ui": {
       "command": "node",
-      "args": ["/YOUR-PATH/spartan-ui-mcp/dist/main.js"] (testing)
+      "args": ["/YOUR-PATH/spartan-ui-mcp/dist/main.js"]
+    }
+  }
+}
+```
+
+### MCP Inspector (testing)
 
 ```bash
 npx @modelcontextprotocol/inspector node dist/main.js
@@ -94,7 +107,8 @@ src/
 │       ├── search-docs.tool.ts
 │       ├── inspect-project.tool.ts
 │       ├── generate-component.tool.ts
-│       └── reindex-docs.tool.ts
+│       ├── reindex-docs.tool.ts
+│       └── spartan-help.tool.ts
 └── data/
     └── spartan-docs.json          # Indexed knowledge base
 ```
