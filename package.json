@@ -1,6 +1,6 @@
 {
   "name": "spartan-ui-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Nicolas Escobar V",
   "description": "MCP server for Spartan UI — RAG-powered documentation search, CLI command generation and project inspection.",
   "license": "MIT",
