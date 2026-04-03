@@ -1,0 +1,7 @@
+# Source (no necesario en npm, solo el dist compilado)
+src/
+tsconfig.json
+pnpm-lock.yaml
+.vscode/
+*.ts
+!src/data/spartan-docs.json

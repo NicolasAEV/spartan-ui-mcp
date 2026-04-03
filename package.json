@@ -1,0 +1,54 @@
+{
+  "name": "spartan-ui-mcp",
+  "version": "1.0.0",
+  "author": "Nicolas Escobar V",
+  "description": "MCP server for Spartan UI — RAG-powered documentation search, CLI command generation and project inspection.",
+  "license": "MIT",
+  "homepage": "https://github.com/NicolasAEV/spartan-ui-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NicolasAEV/spartan-ui-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "spartan-ui",
+    "spartan",
+    "angular",
+    "model-context-protocol",
+    "ai",
+    "nestjs",
+    "rag"
+  ],
+  "main": "dist/main.js",
+  "files": [
+    "dist/",
+    "src/data/spartan-docs.json"
+  ],
+  "bin": {
+    "spartan-mcp": "./dist/main.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "node dist/main.js",
+    "index": "node --import tsx/cjs src/indexer/indexer.cli.ts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@nestjs/common": "^11.1.17",
+    "@nestjs/core": "^11.1.17",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "flexsearch": "^0.8.212",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
